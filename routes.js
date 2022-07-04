@@ -8,14 +8,14 @@ const faker = require("faker");
 
 let users=[];
 
-for (let cont=0;cont<20;cont++){
+for (let cont=0;cont<10;cont++){
     users.push(
     {
         name:faker.name.findName(),
         email:faker.internet.email(),
         address:faker.address.streetAddress(),
         age: 47,
-        heigth:1.70,
+        height:1.70,
         vote:true
     });
 }
@@ -62,6 +62,15 @@ router.get('/cadastro',(req,res)=>{ //callback - funcao que trata dado evento  G
     //a funcao render pode receber um pametro na forma de objeto literal
     //no caso, ela irá receber um objeto com campo chamado users e com valor igual ao vetor users
     res.render('pages/cadastro',{users:users}); 
+});
+
+router.get('/crud/delete',(req,res)=>{
+
+    let deleted = users.pop();
+
+    res.send(`<strong> Elemento ${deleted.name} removido com sucesso!</strong>`);
+
+    //res.render('pages/cadastro',{users:users}); 
 });
 
 //Create - insercao de um usuario
